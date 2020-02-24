@@ -17,6 +17,7 @@ default_args = {
 
 dag = DAG("alex2", default_args=default_args)
 
+
 def print_context(ds, **kwargs):
     print(kwargs)
     print(ds)
