@@ -3,7 +3,7 @@ from airflow import DAG
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.python_operator import PythonOperator
 
-dag = DAG("alex2",start_date=datetime(2000, 2, 22))
+dag = DAG("alex2",start_date=None)
 
 
 def print_context(ds, **kwargs):
