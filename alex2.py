@@ -6,7 +6,7 @@ from airflow.operators.python_operator import PythonOperator
 default_args = {
     'owner': 'Airflow',
     'depends_on_past': False,
-    'start_date': datetime(2015, 12, 1),
+    'start_date': 'None',
     'email': ['airflow@example.com'],
     'email_on_failure': False,
     'email_on_retry': False,
