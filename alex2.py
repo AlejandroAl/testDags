@@ -18,14 +18,12 @@ default_args = {
 dag = DAG("alex2", default_args=default_args)
 
 
-def print_context(ds, **kwargs):
-    print(kwargs)
-    print(ds)
+def print_context():
     return 'Whatever you return gets printed in the logs'
 
 run_this = PythonOperator(
     task_id='print_the_context',
-    provide_context=True,
+    provide_context=False,
     python_callable=print_context,
     dag=dag
     )
