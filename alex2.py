@@ -3,8 +3,19 @@ from airflow import DAG
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.python_operator import PythonOperator
 
-dag = DAG("alex2",start_date=None)
+default_args = {
+    'owner': 'Airflow',
+    'depends_on_past': False,
+    'start_date': datetime(2015, 12, 1),
+    'email': ['airflow@example.com'],
+    'email_on_failure': False,
+    'email_on_retry': False,
+    'retries': 1,
+    'retry_delay': timedelta(minutes=5),
+    'schedule_interval': 'None',
+}
 
+dag = DAG("alex2", default_args=default_args)
 
 def print_context(ds, **kwargs):
     print(kwargs)
