@@ -22,7 +22,7 @@ default_args = {
     'schedule_interval': 'None',
 }
 
-dag = DAG("alex2", default_args=default_args)
+dag = DAG("alex3", default_args=default_args)
 
 secret_file = Secret('volume', '/etc/sql_conn', 'airflow-secrets', 'sql_alchemy_conn')
 secret_env  = Secret('env', 'SQL_CONN', 'airflow-secrets', 'sql_alchemy_conn')
