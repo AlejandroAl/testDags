@@ -6,7 +6,23 @@ from airflow.contrib.kubernetes.secret import Secret
 from airflow.contrib.kubernetes.volume import Volume
 from airflow.contrib.kubernetes.volume_mount import VolumeMount
 from airflow.contrib.kubernetes.pod import Port
+from airflow import DAG
+from datetime import datetime
 
+
+default_args = {
+    'owner': 'Airflow',
+    'depends_on_past': False,
+    'start_date': datetime(2015, 12, 1),
+    'end_date': datetime(2015, 12, 1),
+    'email': ['airflow@example.com'],
+    'email_on_failure': False,
+    'email_on_retry': False,
+    'retries': 1,
+    'schedule_interval': 'None',
+}
+
+dag = DAG("alex2", default_args=default_args)
 
 secret_file = Secret('volume', '/etc/sql_conn', 'airflow-secrets', 'sql_alchemy_conn')
 secret_env  = Secret('env', 'SQL_CONN', 'airflow-secrets', 'sql_alchemy_conn')
@@ -125,6 +141,7 @@ k = KubernetesPodOperator(namespace='default',
                           configmaps=configmaps,
                           init_containers=[init_container],
                           priority_class_name="medium",
+                          dag=dag
                           )
 
 k
